@@ -87,6 +87,24 @@ static struct zmk_led_hsb hsb_scale_zero_max(struct zmk_led_hsb hsb) {
     return hsb;
 }
 
+static uint16_t hue_scale_to_range(uint16_t hue, uint16_t from_max, uint16_t to_min,
+                                   uint16_t to_max) {
+    if (to_max > HUE_MAX)
+        to_max = HUE_MAX;
+    if (to_min > HUE_MAX)
+        to_min = HUE_MAX;
+
+    if (to_min < 0)
+        to_min = 0;
+    if (to_max < 0)
+        to_max = 0;
+
+    int hue_d = abs(to_max - to_min);
+    int direc = hue_d - abs(to_max - to_min - 1);
+    hue = (hue * hue_d / from_max) + (to_min * direc);
+    return hue;
+}
+
 static struct led_rgb hsb_to_rgb(struct zmk_led_hsb hsb) {
     float r = 0, g = 0, b = 0;
 
