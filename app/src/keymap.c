@@ -129,6 +129,8 @@ uint8_t zmk_keymap_highest_layer_active(void) {
     return zmk_keymap_layer_default();
 }
 
+uint8_t zmk_keymap_number_of_layers(void) { return ZMK_KEYMAP_LAYERS_LEN; }
+
 int zmk_keymap_layer_activate(uint8_t layer) { return set_layer_state(layer, true); };
 
 int zmk_keymap_layer_deactivate(uint8_t layer) { return set_layer_state(layer, false); };
