@@ -25,6 +25,11 @@
 #include <zmk/events/activity_state_changed.h>
 #include <zmk/events/usb_conn_state_changed.h>
 #include <zmk/workqueue.h>
+#include <zmk/keymap.h>
+#include <zmk/battery.h>
+#include <zmk/endpoints.h>
+#include <zmk/ble.h>
+#include <zmk/caps_word.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
