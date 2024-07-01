@@ -226,10 +226,9 @@ static void zmk_rgb_underglow_effect_status(void) {
 // ------- Turn on the output status led -------
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT)
     // status_hsb.h = zmk_endpoints_selected() * 90;
-    status_hsb.h = hue_scale_to_range(
-        zmk_endpoint_selected(struct zmk_endpoint_instance zmk_endpoints_selected),
-        ZMK_TRANSPORT_BLE, CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_COLOR_MIN,
-        CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_COLOR_MAX);
+    status_hsb.h = hue_scale_to_range(zmk_endpoint_selected(void), ZMK_TRANSPORT_BLE,
+                                      CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_COLOR_MIN,
+                                      CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_COLOR_MAX);
     pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_N] = hsb_to_rgb(hsb_scale_min_max(status_hsb));
 #endif
 
