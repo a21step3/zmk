@@ -68,6 +68,8 @@ int zmk_endpoints_toggle_transport(void);
  */
 struct zmk_endpoint_instance zmk_endpoints_selected(void);
 
+int zmk_endpoint_selected(struct zmk_endpoint_instance zmk_endpoints_selected);
+
 int zmk_endpoints_send_report(uint16_t usage_page);
 
 #if IS_ENABLED(CONFIG_ZMK_POINTING)
