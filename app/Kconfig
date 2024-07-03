@@ -346,7 +346,7 @@ config ZMK_RGB_UNDERGLOW_STATUS_BATTERY
 	default y
 
 config ZMK_RGB_UNDERGLOW_STATUS_BATTERY_N
-	int arr[] "LED number to show the battery status"
+	int "LED number to show the battery status"
 	range 0 ZMK_RGB_UNDERGLOW_NUM_LEDS
 	default 0
 	depends on ZMK_RGB_UNDERGLOW_STATUS_BATTERY
