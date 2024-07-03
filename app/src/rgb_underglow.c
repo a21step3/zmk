@@ -214,6 +214,19 @@ static void zmk_rgb_underglow_effect_status(void) {
 #if CONFIG_ZMK_SPLIT_ROLE_CENTRAL
     struct zmk_led_hsb status_hsb = state.color;
 
+// ------- Turn on the battery status led -------
+#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY)
+    for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
+        struct zmk_led_hsb battery_hsb = state.color;
+        battery_hsb.h = hue_scale_to_range(zmk_battery_state_of_charge(), 100,
+                                           CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MIN,
+                                           CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MAX);
+        battery_hsb.b = zmk_battery_state_of_charge();
+
+        pixels[i] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
+    }
+#endif
+
 // ------- Turn on the layer status leds -------
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_LAYER)
     status_hsb.h =
@@ -239,19 +252,6 @@ static void zmk_rgb_underglow_effect_status(void) {
 
     pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
 #endif
-#endif
-
-// ------- Turn on the battery status led -------
-#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY)
-    for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
-        struct zmk_led_hsb battery_hsb = state.color;
-        battery_hsb.h = hue_scale_to_range(zmk_battery_state_of_charge(), 100,
-                                           CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MIN,
-                                           CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MAX);
-        battery_hsb.b = zmk_battery_state_of_charge();
-
-        pixels[i] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
-    }
 #endif
 }
 
