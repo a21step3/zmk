@@ -21,7 +21,7 @@
 #include <zmk/keymap.h>
 #include <zmk/caps_word.h>
 
-bool last_state_of_caps_word = false
+bool last_state_of_caps_word = false;
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -61,10 +61,10 @@ static int on_caps_word_binding_pressed(struct zmk_behavior_binding *binding,
     struct behavior_caps_word_data *data = dev->data;
 
     if (data->active) {
-        last_state_of_caps_word = true,
+        last_state_of_caps_word = false;
         deactivate_caps_word(dev);
     } else {
-        last_state_of_caps_word = false,
+        last_state_of_caps_word = true;
         activate_caps_word(dev);
     }
 
