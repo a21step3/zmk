@@ -252,9 +252,9 @@ static void zmk_rgb_underglow_effect_status(void) {
         pixels[i] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
     }
 #endif
-}
-#if NOT(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
-    for (int i = 6; i < STRIP_NUM_PIXELS; i++) {
+
+#if (NOT CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
+    for (int i = 0; i < STRIP_NUM_PIXELS; i++) {
         struct zmk_led_hsb battery_hsb = state.color;
         battery_hsb.h = hue_scale_to_range(zmk_battery_state_of_charge(), 100,
                                            CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MIN,
