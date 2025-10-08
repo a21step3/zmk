@@ -19,10 +19,7 @@
 #include <zmk/keys.h>
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
-
 #include <zmk/caps_word.h>
-
-bool last_state_of_caps_word = true;
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
