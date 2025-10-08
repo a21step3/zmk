@@ -229,7 +229,6 @@ static void zmk_rgb_underglow_effect_status(void) {
                                       CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BLE_COLOR_MAX);
     pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BLE_N] = hsb_to_rgb(hsb_scale_min_max(status_hsb));
 #endif
-#endif
 
 // ------- Turn on the caps word for status led -------
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS)
@@ -238,6 +237,7 @@ static void zmk_rgb_underglow_effect_status(void) {
     caps_word_hsb.b = zmk_caps_word_state() * caps_word_hsb.b;
 
     pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
+#endif
 #endif
 
 // ------- Turn on the battery status led -------
