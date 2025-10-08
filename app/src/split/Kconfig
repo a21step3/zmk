@@ -9,6 +9,9 @@ if ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     bool "Split central device"
 
+config ZMK_SPLIT_ROLE_PERIF
+    bool "Split peripheral device"
+
 config ZMK_SPLIT_BLE
     bool "BLE Split"
     default y
