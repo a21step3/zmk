@@ -1,4 +1,5 @@
 #include <zmk/caps_word.h>
+#include <zmk/caps_active.h>
 #include <stdbool.h>
 #include <zephyr/kernel.h>
 
