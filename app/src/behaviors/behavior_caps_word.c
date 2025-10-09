@@ -21,7 +21,7 @@
 #include <zmk/keymap.h>
 #include <zmk/caps_word.h>
 
-bool zmk_caps_word_state() {return behavior_caps_word_data.data->active; }
+bool zmk_caps_word_state() {return active; }
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
