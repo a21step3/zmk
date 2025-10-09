@@ -41,7 +41,11 @@ struct behavior_caps_word_data {
     bool active;
 };
 
-bool zmk_caps_word_state() {return struct behavior_caps_word_data.data->active; }
+bool zmk_caps_word_state() {
+    struct behavior_caps_word_data *data = dev->data;
+
+    return data->active; 
+}
 
 static void activate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
