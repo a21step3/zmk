@@ -37,15 +37,15 @@ struct behavior_caps_word_config {
     struct caps_word_continue_item continuations[];
 };
 
-struct behavior_caps_word_data {
-    bool active;
-};
-
 bool zmk_caps_word_state(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
 
     return data->active; 
 }
+
+struct behavior_caps_word_data {
+    bool active;
+};
 
 static void activate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
