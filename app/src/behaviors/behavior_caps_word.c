@@ -182,4 +182,6 @@ DT_INST_FOREACH_STATUS_OKAY(KP_INST)
 
 bool zmk_caps_word_state(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
+
+    return data->active
 }
