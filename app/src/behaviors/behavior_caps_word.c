@@ -37,12 +37,6 @@ struct behavior_caps_word_config {
     struct caps_word_continue_item continuations[];
 };
 
-bool zmk_caps_word_state(const struct device *dev) {
-    struct behavior_caps_word_data *data = dev->data;
-
-    return data->active; 
-}
-
 struct behavior_caps_word_data {
     bool active;
 };
@@ -57,6 +51,12 @@ static void deactivate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
 
     data->active = false;
+}
+
+bool zmk_caps_word_state(const struct device *dev) {
+    struct behavior_caps_word_data *data = dev->data;
+
+    return data->active; 
 }
 
 static int on_caps_word_binding_pressed(struct zmk_behavior_binding *binding,
