@@ -53,12 +53,6 @@ static void deactivate_caps_word(const struct device *dev) {
     data->active = false;
 }
 
-bool zmk_caps_word_state(const struct device *dev) {
-    struct behavior_caps_word_data *data = dev->data;
-
-    return data->active; 
-}
-
 static int on_caps_word_binding_pressed(struct zmk_behavior_binding *binding,
                                         struct zmk_behavior_binding_event event) {
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
@@ -185,3 +179,9 @@ static int caps_word_keycode_state_changed_listener(const zmk_event_t *eh) {
 DT_INST_FOREACH_STATUS_OKAY(KP_INST)
 
 #endif
+
+bool zmk_caps_word_state(const struct device *dev) {
+    struct behavior_caps_word_data *data = dev->data;
+
+    return data->active; 
+}
