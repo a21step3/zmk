@@ -21,12 +21,6 @@
 #include <zmk/keymap.h>
 #include <zmk/caps_word.h>
 
-bool zmk_caps_word_state(const struct device *dev) { 
-    struct behavior_caps_word_data *data = dev->data;
-
-    return data->active;
-};
-
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
@@ -77,6 +71,12 @@ static int on_caps_word_binding_released(struct zmk_behavior_binding *binding,
                                          struct zmk_behavior_binding_event event) {
     return ZMK_BEHAVIOR_OPAQUE;
 }
+
+bool zmk_caps_word_state(const struct device *dev) { 
+    struct behavior_caps_word_data *data = dev->data;
+
+    return data->active;
+};
 
 static const struct behavior_driver_api behavior_caps_word_driver_api = {
     .binding_pressed = on_caps_word_binding_pressed,
