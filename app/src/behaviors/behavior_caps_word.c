@@ -72,8 +72,8 @@ static int on_caps_word_binding_released(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-bool zmk_caps_word_state(const struct device *dev) { 
-    struct behavior_caps_word_data *data = dev->data;
+bool zmk_caps_word_state() { 
+    struct behavior_caps_word_data *data;
 
     return data->active;
 };
