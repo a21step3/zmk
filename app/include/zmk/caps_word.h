@@ -8,5 +8,5 @@
 
 #include <stdbool.h>
 
-extern bool last_state_caps_word;
+extern struct behavior_caps_word_data;
 bool zmk_caps_word_state(); 
