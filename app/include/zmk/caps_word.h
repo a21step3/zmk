@@ -8,4 +8,5 @@
 
 #include <stdbool.h>
 
-bool zmk_caps_word_state(const struct device *dev) {return data->active;}; 
+extern bool last_state_caps_word;
+bool zmk_caps_word_state(); 
