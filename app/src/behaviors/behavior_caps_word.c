@@ -21,6 +21,12 @@
 #include <zmk/keymap.h>
 #include <zmk/caps_word.h>
 
+bool zmk_caps_word_state(const struct device *dev) { 
+    struct behavior_caps_word_data *data = dev->data;
+
+    return data->active;
+};
+
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
@@ -39,12 +45,6 @@ struct behavior_caps_word_config {
 
 struct behavior_caps_word_data {
     bool active;
-};
-
-bool zmk_caps_word_state() { 
-    struct behavior_caps_word_data *data;
-
-    return data->active;
 };
 
 static void activate_caps_word(const struct device *dev) {
