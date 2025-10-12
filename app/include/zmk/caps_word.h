@@ -8,5 +8,4 @@
 
 #include <stdbool.h>
 
-extern struct behavior_caps_word_data;
 bool zmk_caps_word_state(); 
