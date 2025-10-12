@@ -41,10 +41,6 @@ struct behavior_caps_word_data {
     bool active;
 };
 
-struct behavior_caps_word_data {
-    behavior_caps_word_data *data;
-}
-
 static void activate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
     
@@ -76,7 +72,9 @@ static int on_caps_word_binding_released(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-bool zmk_caps_word_state = behavior_caps_word_data.data->active 
+bool zmk_caps_word_state(struct behavior_caps_word_data *data) {
+    return data->active;
+}
 
 static const struct behavior_driver_api behavior_caps_word_driver_api = {
     .binding_pressed = on_caps_word_binding_pressed,
