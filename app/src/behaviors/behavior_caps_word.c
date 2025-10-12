@@ -46,14 +46,14 @@ struct behavior_caps_word_data {
 static void activate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
     
-    bool last_state_caps_word = true
+    bool last_state_caps_word = true,
     data->active = true;
 }
 
 static void deactivate_caps_word(const struct device *dev) {
     struct behavior_caps_word_data *data = dev->data;
 
-    bool last_state_caps_word = false
+    bool last_state_caps_word = false,
     data->active = false;
 }
 
