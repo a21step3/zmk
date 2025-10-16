@@ -72,10 +72,10 @@ static int on_caps_word_binding_released(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
+bool state = true;
+
 bool zmk_caps_word_state() {
     
-    bool state = true;
-
     if (state) {
         state = false;
     } else {
