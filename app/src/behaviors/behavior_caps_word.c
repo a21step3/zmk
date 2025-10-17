@@ -72,19 +72,6 @@ static int on_caps_word_binding_released(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
-bool state;
-
-bool zmk_caps_word_state() {
-    
-    if (state) {
-        state = false;
-    } else {
-        state = true;
-    }
-
-    return state;
-}
-
 static const struct behavior_driver_api behavior_caps_word_driver_api = {
     .binding_pressed = on_caps_word_binding_pressed,zmk_caps_word_state,
     .binding_released = on_caps_word_binding_released,
