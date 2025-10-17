@@ -5,14 +5,13 @@
 #include <zmk/events/hid_indicators_changed.h>
 #include <zmk/hid_indicators.h>
 #include <zmk/rgb_underglow.h>
+#include <zmk/caps_word.h>
 
 #define COLOR_OFF   {0,0,0}
 #define COLOR_ON    {0, 0, 100}
 
 static void set_capslock_led(bool caps_on) {
-    struct zmk_led_hsb caps_word_hsb = caps_on ? (struct zmk_led_hsb)COLOR_ON : (struct zmk_led_hsb)COLOR_OFF;
-
-    pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
+    caps_on ? (zmk_caps_word_state = true): (zmk_caps_word_state = false);
 }
 
 static int capslock_listener_cb(const zmk_event_t *eh) {

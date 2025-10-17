@@ -8,4 +8,4 @@
 
 #include <stdbool.h>
 
-bool zmk_caps_word_state(); 
+bool zmk_caps_word_state; 
