@@ -7,8 +7,7 @@
 #include <zmk/rgb_underglow.h>
 #include <zmk/caps_word.h>
 
-#define COLOR_OFF   {0,0,0}
-#define COLOR_ON    {0, 0, 100}
+bool zmk_caps_word_state;
 
 static void set_capslock_led(bool caps_on) {
     caps_on ? (zmk_caps_word_state = true): (zmk_caps_word_state = false);
