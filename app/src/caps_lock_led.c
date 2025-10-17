@@ -10,8 +10,13 @@
 #define COLOR_ON    {0, 0, 100}
 
 static void set_capslock_led(bool caps_on) {
-    struct zmk_led_hsb caps_word_hsb = caps_on ? (struct zmk_led_hsb)COLOR_ON : (struct zmk_led_hsb)COLOR_OFF;
-    zmk_rgb_underglow_set_hsb(caps_word_hsb);
+    struct zmk_led_hsb caps_word_hsb = caps_on ? 
+	   (struct zmk_led_hsb caps_word_hsb = state.color;
+            caps_word_hsb.h = 1 * CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR;
+            caps_word_hsb.b = 1 * caps_word_hsb.b;) :
+	   (struct zmk_led_hsb caps_word_hsb = state.color;
+            caps_word_hsb.h = 0 * CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR;
+            caps_word_hsb.b = 0 * caps_word_hsb.b;);
 }
 
 static int capslock_listener_cb(const zmk_event_t *eh) {
