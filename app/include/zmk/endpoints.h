@@ -68,7 +68,7 @@ int zmk_endpoints_toggle_transport(void);
  */
 struct zmk_endpoint_instance zmk_endpoints_selected(void);
 
-static enum zmk_transport get_selected_transport(void); 
+enum zmk_transport get_selected_transport(void); 
 
 int zmk_endpoints_send_report(uint16_t usage_page);
 
