@@ -32,13 +32,19 @@ static enum zmk_transport preferred_transport =
 
 static void update_current_endpoint(void);
 
+enum zmk_output_selected(void) {
+    struct zmk_endpoint_instance current_instance = output;
+
+    return output;
+}
+
 #if IS_ENABLED(CONFIG_SETTINGS)
 static void endpoints_save_preferred_work(struct k_work *work) {
     settings_save_one("endpoints/preferred", &preferred_transport, sizeof(preferred_transport));
 }
 
 static struct k_work_delayable endpoints_save_work;
-#endif
+#endsif
 
 static int endpoints_save_preferred(void) {
 #if IS_ENABLED(CONFIG_SETTINGS)
