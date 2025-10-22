@@ -32,7 +32,7 @@ static enum zmk_transport preferred_transport =
 
 static void update_current_endpoint(void);
 
-enum zmk_output zmk_output_selected(void) {
+enum zmk_output zmk_output_selected() {
     struct zmk_endpoint_instance current_instance = output;
 
     return output;
