@@ -38,7 +38,7 @@ static void endpoints_save_preferred_work(struct k_work *work) {
 }
 
 static struct k_work_delayable endpoints_save_work;
-#endsif
+#endif
 
 static int endpoints_save_preferred(void) {
 #if IS_ENABLED(CONFIG_SETTINGS)
