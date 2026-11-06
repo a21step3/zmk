@@ -19,7 +19,6 @@
         bootloader: bootload {
             compatible = "zmk,behavior-reset";
             type = <RST_UF2>;
-            bootloader;
             #binding-cells = <0>;
             display-name = "Bootloader";
         };

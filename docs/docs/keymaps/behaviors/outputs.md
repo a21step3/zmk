@@ -29,12 +29,11 @@ header, which is added at the top of the keymap file:
 
 This allows you to reference the actions defined in this header:
 
-| Define     | Action                                          |
-| ---------- | ----------------------------------------------- |
-| `OUT_USB`  | Prefer sending to USB                           |
-| `OUT_BLE`  | Prefer sending to the current bluetooth profile |
-| `OUT_TOG`  | Toggle between USB and BLE                      |
-| `OUT_NONE` | Prevent from sending any output                 |
+| Define    | Action                                          |
+| --------- | ----------------------------------------------- |
+| `OUT_USB` | Prefer sending to USB                           |
+| `OUT_BLE` | Prefer sending to the current bluetooth profile |
+| `OUT_TOG` | Toggle between USB and BLE                      |
 
 ## Output Selection Behavior
 

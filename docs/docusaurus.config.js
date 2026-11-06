@@ -1,34 +1,6 @@
-const { execSync } = require("child_process");
 const path = require("path");
 const theme = require("./src/theme/prism/themes/github");
 const darkTheme = require("./src/theme/prism/themes/github-dark-dimmed");
-const { releaseVersions } = require("./zmk-release-versions.json");
-
-const gitBranch =
-  process.env.BRANCH ||
-  execSync("git branch --show-current", { encoding: "utf-8" }).trim();
-const isDevelopmentVersion =
-  gitBranch === "main" || !/^v\d+\.\d+-branch$/.test(gitBranch);
-const versionNavbarItems = [
-  {
-    label: "Pre-Release",
-    description: "Current active development branch (main)",
-    href: "https://zmk.dev/docs/",
-  },
-  ...releaseVersions.map((r) => ({
-    label: "v" + r,
-    description: "Stable release v" + r,
-    href: `https://v${r.replaceAll(".", "-")}-branch.zmk.dev/docs/`,
-  })),
-];
-
-const versionDropDownLabel = (
-  isDevelopmentVersion
-    ? versionNavbarItems[0]
-    : versionNavbarItems.find((item) => {
-        return item.label === gitBranch.replace("-branch", "");
-      })
-).label;
 
 module.exports = {
   title: "ZMK Firmware",
@@ -39,16 +11,13 @@ module.exports = {
   trailingSlash: "false",
   organizationName: "zmkfirmware", // Usually your GitHub org/user name.
   projectName: "zmk", // Usually your repo name.
-  customFields: {
-    isDevelopmentVersion,
-    releaseVersions,
-  },
   plugins: [
     "@docusaurus/theme-mermaid",
     path.resolve(__dirname, "src/docusaurus-tree-sitter-plugin"),
     path.resolve(__dirname, "src/hardware-metadata-collection-plugin"),
     path.resolve(__dirname, "src/hardware-metadata-static-plugin"),
     path.resolve(__dirname, "src/hardware-schema-typescript-plugin"),
+    path.resolve(__dirname, "src/setup-script-generation-plugin"),
   ],
   themeConfig: {
     colorMode: {
@@ -82,29 +51,16 @@ module.exports = {
           label: "Docs",
           position: "left",
         },
-        isDevelopmentVersion
-          ? { to: "blog", label: "Blog", position: "left" }
-          : { href: "https://zmk.dev/blog", label: "Blog", position: "left" },
+        { to: "blog", label: "Blog", position: "left" },
         {
-          type: "dropdown",
-          label: "Tools",
+          to: "power-profiler",
+          label: "Power Profiler",
           position: "left",
-          items: [
-            {
-              to: "power-profiler",
-              label: "Power Profiler",
-            },
-            {
-              to: "keymap-upgrader",
-              label: "Keymap Upgrader",
-            },
-          ],
         },
         {
-          type: "dropdown",
-          label: versionDropDownLabel,
-          position: "right",
-          items: versionNavbarItems,
+          to: "keymap-upgrader",
+          label: "Keymap Upgrader",
+          position: "left",
         },
         {
           href: "https://zmk.studio/",
@@ -113,8 +69,7 @@ module.exports = {
         },
         {
           href: "https://github.com/zmkfirmware/zmk",
-          "aria-label": "ZMK GitHub Repository",
-          className: "header-github-link",
+          label: "GitHub",
           position: "right",
         },
       ],
@@ -151,6 +106,10 @@ module.exports = {
             {
               label: "Mastodon",
               href: "https://fosstodon.org/@zmk",
+            },
+            {
+              label: "Twitter",
+              href: "https://twitter.com/ZMKFirmware",
             },
           ],
         },
@@ -197,12 +156,12 @@ module.exports = {
           // It is recommended to set document id as docs home page (`docs/` path).
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: "https://github.com/zmkfirmware/zmk/blob/main/docs/",
+          editUrl: "https://github.com/zmkfirmware/zmk/edit/main/docs/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: "https://github.com/zmkfirmware/zmk/blob/main/docs/",
+          editUrl: "https://github.com/zmkfirmware/zmk/edit/main/docs/",
           blogSidebarCount: "ALL",
         },
         theme: {

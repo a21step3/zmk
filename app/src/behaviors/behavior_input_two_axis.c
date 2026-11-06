@@ -143,7 +143,7 @@ static float update_movement_1d(const struct behavior_input_two_axis_config *con
     }
 
     int64_t move_duration = ticks_since_start(state->start_time, now, config->delay_ms);
-    LOG_DBG("Calculated speed: %f", (double)speed(config, code, state->speed, move_duration));
+    LOG_DBG("Calculated speed: %f", speed(config, code, state->speed, move_duration));
     move =
         (move_duration > 0)
             ? (speed(config, code, state->speed, move_duration) * config->trigger_period_ms / 1000)
@@ -288,7 +288,7 @@ static const struct behavior_driver_api behavior_input_two_axis_driver_api = {
 
 #define ITA_INST(n)                                                                                \
     static struct behavior_input_two_axis_data behavior_input_two_axis_data_##n = {};              \
-    static const struct behavior_input_two_axis_config behavior_input_two_axis_config_##n = {      \
+    static struct behavior_input_two_axis_config behavior_input_two_axis_config_##n = {            \
         .x_code = DT_INST_PROP(n, x_input_code),                                                   \
         .y_code = DT_INST_PROP(n, y_input_code),                                                   \
         .trigger_period_ms = DT_INST_PROP(n, trigger_period_ms),                                   \
