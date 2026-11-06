@@ -20,6 +20,10 @@
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
+// RGB-Status Code START
+#include <zmk/caps_word.h>
+// RGB-Status Code END
+
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)

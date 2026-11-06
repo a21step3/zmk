@@ -74,6 +74,11 @@ if ((NOT CONFIG_ZMK_SPLIT) OR CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
   target_sources(app PRIVATE src/events/endpoint_changed.c)
   target_sources(app PRIVATE src/hid_listener.c)
   target_sources(app PRIVATE src/keymap.c)
+
+# RGB-Status Code START
+  target_sources(app PRIVATE src/caps_lock_led.c)
+# RGB-Status Code END
+
   target_sources(app PRIVATE src/events/layer_state_changed.c)
   target_sources(app PRIVATE src/events/modifiers_state_changed.c)
   target_sources(app PRIVATE src/events/keycode_state_changed.c)

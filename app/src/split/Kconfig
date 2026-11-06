@@ -9,6 +9,11 @@ if ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     bool "Split central device"
 
+#RGB-Status Code START
+config ZMK_SPLIT_ROLE_PERIF
+    bool "Split peripheral device"
+#RGB-Status Code END
+
 config ZMK_SPLIT_BLE
     bool "BLE Split"
     default y
