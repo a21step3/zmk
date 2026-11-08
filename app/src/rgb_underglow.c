@@ -249,7 +249,7 @@ static void zmk_rgb_underglow_effect_status(void) {
 // ------- Turn on the caps word for status led -------
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS)
     struct zmk_led_hsb caps_word_hsb = state.color;
-    caps_word_hsb.h = hue_scale_to_range(zmk_battery_state_of_charge(), 100 + zmk_caps_word_state*260,
+    caps_word_hsb.h = hue_scale_to_range(zmk_battery_state_of_charge() + (zmk_caps_word_state * 360), 100,
                                            CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MIN,
                                            CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY_COLOR_MAX);
     caps_word_hsb.b = zmk_battery_state_of_charge() + (zmk_caps_word_state*360);
