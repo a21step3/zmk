@@ -393,7 +393,7 @@ config ZMK_RGB_UNDERGLOW_STATUS_OUTPUT
 config ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_N
 	int "LED number to show the output status"
 	range 0 ZMK_RGB_UNDERGLOW_NUM_LEDS
-	default 2
+	default 1
 	depends on ZMK_RGB_UNDERGLOW_STATUS_OUTPUT
 
 config ZMK_RGB_UNDERGLOW_STATUS_OUTPUT_COLOR_MIN
@@ -413,7 +413,7 @@ config ZMK_RGB_UNDERGLOW_STATUS_BLE
 config ZMK_RGB_UNDERGLOW_STATUS_BLE_N
 	int "LED number to show the selected ble"
 	range 0 ZMK_RGB_UNDERGLOW_NUM_LEDS
-	default 3
+	default 2
 	depends on ZMK_RGB_UNDERGLOW_STATUS_BLE
 
 config ZMK_RGB_UNDERGLOW_STATUS_BLE_COLOR_MIN
@@ -433,7 +433,7 @@ config ZMK_RGB_UNDERGLOW_STATUS_CAPS
 config ZMK_RGB_UNDERGLOW_STATUS_CAPS_N
 	int "LED number to show the status of caps word"
 	range 0 ZMK_RGB_UNDERGLOW_NUM_LEDS
-	default 4
+	default 3
 
 config ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR
 	int "Color when caps word is on."
