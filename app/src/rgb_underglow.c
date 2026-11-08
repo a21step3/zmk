@@ -105,20 +105,7 @@ static uint16_t hue_scale_to_range(uint16_t hue, uint16_t from_max, uint16_t to_
     if (to_max < 0)
         to_max = 0;
 
-    int hue_d = abs(// ------- Turn on the caps word for status led -------
-#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS)
-    struct zmk_led_hsb caps_word_hsb = state.color;
-    caps_word_hsb.h = zmk_caps_word_state * CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR;
-    caps_word_hsb.b = zmk_caps_word_state * caps_word_hsb.b;
-
-    if (zmk_caps_word_state == 1) {
-	pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
-    }
-    else {
-	pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
-    }
-#endif
-to_max - to_min);
+    int hue_d = abs(to_max - to_min);
     int direc = hue_d - abs(to_max - to_min - 1);
     hue = (hue * hue_d / from_max) + (to_min * direc);
     return hue;
@@ -167,11 +154,7 @@ static struct led_rgb hsb_to_rgb(struct zmk_led_hsb hsb) {
         g = p;
         b = q;
         break;
-    }	signingkey = 7EEC9EA477891F56
-[commit]
-	gpgsign = false
-[tag]
-	gpgsign = false
+    }
 
     struct led_rgb rgb = {r : r * 255, g : g * 255, b : b * 255};
 
@@ -263,6 +246,15 @@ static void zmk_rgb_underglow_effect_status(void) {
     pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BLE_N] = hsb_to_rgb(hsb_scale_min_max(status_hsb));
 #endif
 
+// ------- Turn on the caps word for status led -------
+#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS)
+    struct zmk_led_hsb caps_word_hsb = state.color;
+    caps_word_hsb.h = zmk_caps_word_state * CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR;
+    caps_word_hsb.b = zmk_caps_word_state * caps_word_hsb.b;
+
+    pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
+#endif
+
 // ------- Turn on the battery status led -------
 #if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_BATTERY)
     for (int i = 4; i < STRIP_NUM_PIXELS; i++) {
@@ -273,20 +265,6 @@ static void zmk_rgb_underglow_effect_status(void) {
         battery_hsb.b = zmk_battery_state_of_charge();
 
         pixels[i] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
-    }
-#endif
-
-// ------- Turn on the caps word for status led -------
-#if IS_ENABLED(CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS)
-    struct zmk_led_hsb caps_word_hsb = state.color;
-    caps_word_hsb.h = zmk_caps_word_state * CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_COLOR;
-    caps_word_hsb.b = zmk_caps_word_state * caps_word_hsb.b;
-
-    if (zmk_caps_word_state == 1) {
-	pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(caps_word_hsb));
-    }
-    else {
-	pixels[CONFIG_ZMK_RGB_UNDERGLOW_STATUS_CAPS_N] = hsb_to_rgb(hsb_scale_zero_max(battery_hsb));
     }
 #endif
 #endif
