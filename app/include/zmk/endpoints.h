@@ -69,7 +69,6 @@ int zmk_endpoints_toggle_transport(void);
 struct zmk_endpoint_instance zmk_endpoints_selected(void);
 
 // RGB-Status Code START
-bool zmk_get_output_selected(struct zmk_endpoint_instance endpoint);
 bool zmk_output_selected(void);
 // RGB-Status Code END
 
