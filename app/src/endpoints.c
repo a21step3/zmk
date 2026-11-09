@@ -48,6 +48,16 @@ static int endpoints_save_preferred(void) {
 #endif
 }
 
+bool zmk_output_selected(struct zmk_endpoint_instance endpoint) {
+    switch (endpoint.transport) {
+    case ZMK_TRANSPORT_USB:
+        return true;
+
+    case ZMK_TRANSPORT_BLE:
+        return false;
+    }
+}
+
 bool zmk_endpoint_instance_eq(struct zmk_endpoint_instance a, struct zmk_endpoint_instance b) {
     if (a.transport != b.transport) {
         return false;
