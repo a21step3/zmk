@@ -60,7 +60,12 @@ bool zmk_get_output_selected(struct zmk_endpoint_instance endpoint) {
 }
 
 bool zmk_output_selected() {
-    return zmk_get_output_selected(endpoint);
+    switch (zmk_get_output_selected(endpoint)) {
+    case 1:
+	return true;
+    case 0:
+	return false;
+    }
 }
 
 //RGB Status Code END
