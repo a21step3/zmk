@@ -60,10 +60,10 @@ bool zmk_get_output_selected(struct zmk_endpoint_instance endpoint) {
 }
 
 bool zmk_output_selected() {
-    switch (zmk_get_output_selected(endpoint)) {
-    case 1:
+    switch (current_instance.transport) {
+    case ZMK_TRANSPORT_USB:
 	return true;
-    case 0:
+    case ZMK_TRANSPORT_BLE:
 	return false;
     }
 }
