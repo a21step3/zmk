@@ -48,7 +48,8 @@ static int endpoints_save_preferred(void) {
 #endif
 }
 
-bool zmk_output_selected(struct zmk_endpoint_instance endpoint) {
+//RGB Status Code START
+bool zmk_get_output_selected(struct zmk_endpoint_instance endpoint) {
     switch (endpoint.transport) {
     case ZMK_TRANSPORT_USB:
         return true;
@@ -57,6 +58,12 @@ bool zmk_output_selected(struct zmk_endpoint_instance endpoint) {
         return false;
     }
 }
+
+bool zmk_output_selected() {
+    return zmk_get_output_selected(endpoint);
+}
+
+//RGB Status Code END
 
 bool zmk_endpoint_instance_eq(struct zmk_endpoint_instance a, struct zmk_endpoint_instance b) {
     if (a.transport != b.transport) {
